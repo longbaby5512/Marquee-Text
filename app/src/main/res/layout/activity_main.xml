@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<<<<<<< HEAD
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/root"
+=======
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+>>>>>>> 4a53c09df07006b3fbae116c6dac042490349f6c
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/marquee"
+<<<<<<< HEAD
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@string/text"
+        android:textColor="@color/red"
+        android:textSize="30sp" />
+
+</LinearLayout>
+=======
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:ellipsize="marquee"
+        android:gravity="center"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
+        android:text="@string/text"
+        android:textColor="@color/red"
+        android:textSize="100sp" />
+
+</RelativeLayout>
+>>>>>>> 4a53c09df07006b3fbae116c6dac042490349f6c
