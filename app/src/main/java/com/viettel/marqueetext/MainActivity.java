@@ -1,9 +1,9 @@
 package com.viettel.marqueetext;
 
 import android.content.res.Configuration;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -11,8 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
     private long pressedTime;
-    TextRunningTask textRunning;
-    Integer counterRunning = 0;
+    private static int counterPressedHome = 0;
+    private LinearLayout drawTextCanvas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,10 +24,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        textRunning = new TextRunningTask(this);
-        textRunning.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, counterRunning);
-        counterRunning += 1;
-    }
+        final SurfaceViewThread surfaceViewThread = new SurfaceViewThread(getApplicationContext(), counterPressedHome);
+        counterPressedHome++;
+
+        drawTextCanvas = (LinearLayout) findViewById(R.id.drawTextCanvas);
+        drawTextCanvas.destroyDrawingCache();
+        drawTextCanvas.addView(surfaceViewThread);
+        }
 
     @Override
     public void onBackPressed() {
@@ -43,11 +46,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        textRunning.cancel(true);
+        drawTextCanvas.removeAllViews();
     }
 
     @Override
     public void onConfigurationChanged(@NonNull Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
     }
+
 }
